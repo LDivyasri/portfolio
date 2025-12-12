@@ -2807,3 +2807,121 @@ footer a svg {
     width: 1.25rem;
     height: 1.25rem;
 }
+/* Contact Functionality Enhancements */
+
+/* Floating contact button */
+#floating-contact-btn {
+    animation: float 3s ease-in-out infinite;
+}
+
+#floating-contact-btn a {
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+#floating-contact-btn a:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+}
+
+/* Contact section animations */
+#contact-section .glass-card-enhanced {
+    animation: fadeInUp 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+#contact-section .glass-card-enhanced:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+#contact-section .glass-card-enhanced:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#contact-section .glass-card-enhanced:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Form enhancements */
+.focused {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+/* Contact form input focus effects */
+#contact-section input:focus,
+#contact-section textarea:focus,
+#contact-section select:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+/* Success/Error message animations */
+#quickSuccessMessage,
+#quickErrorMessage {
+    animation: slideInDown 0.3s ease-out;
+}
+
+/* Contact navigation link highlight */
+header a[href*="contact"] {
+    position: relative;
+}
+
+header a[href*="contact"]:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(45deg, #493D9E, #B2A5FF);
+    border-radius: 1px;
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* Mobile responsiveness for contact elements */
+@media (max-width: 768px) {
+    #floating-contact-btn {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    #floating-contact-btn a span {
+        display: none;
+    }
+    
+    #contact-section .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Contact form validation styles */
+.invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.valid {
+    border-color: #22c55e !important;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1) !important;
+}
+
+/* Loading state for contact forms */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}

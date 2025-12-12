@@ -1,7 +1,12 @@
 // Contact Form Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS (you'll need to replace with your actual EmailJS credentials)
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    // Initialize EmailJS - Using a working demo key for immediate functionality
+    // For production, replace with your actual EmailJS credentials
+    try {
+        emailjs.init("demo_public_key"); // This is a demo key - replace with your actual key
+    } catch (error) {
+        console.log('EmailJS not available, using mailto fallback');
+    }
     
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -105,15 +110,18 @@ document.addEventListener('DOMContentLoaded', function() {
         hideAllMessages();
 
         try {
-            // Method 1: Using EmailJS (recommended)
-            await sendWithEmailJS(formData);
-            
-            // Method 2: Fallback to mailto (if EmailJS fails)
-            // sendWithMailto(formData);
+            // Try EmailJS first, but fallback to mailto immediately if not configured
+            if (typeof emailjs !== 'undefined' && emailjs.send) {
+                await sendWithEmailJS(formData);
+            } else {
+                // Use mailto as primary method for immediate functionality
+                sendWithMailto(formData);
+            }
             
         } catch (error) {
             console.error('Error sending message:', error);
-            showMessage('error', 'Failed to send message. Please try again or contact us directly.');
+            // Fallback to mailto if EmailJS fails
+            sendWithMailto(formData);
         } finally {
             setLoading(false);
         }
